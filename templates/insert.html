@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Admin - Insert data{% endblock title %}
+
+{% block body %}
+
+<body class="h-100 bg-dark">
+    <div class="d-flex justify-content-center container-fluid p-2 bg-dark text-white">
+        Welcome {{request.user}}
+        <a class="mx-3" href="logoutUser">Logout</a>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-center container-fluid p-2 bg-dark text-white">
+        <input type="text" name="searchValue" class="form-control ml-2 w-25" id="searchValue" autocomplete="off" placeholder="Enter Movie Name" required>
+        <button type="button" id="searchBtn" class="btn btn-success ml-2">Search</button>
+        <button type="button" class="btn btn-secondary ml-2" onclick="resetInput(event);">Clear</button>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-center container-fluid p-2 bg-dark text-white" id="searchContainer">
+
+    </div>
+
+    <div class="container-fluid my-5 p-3 d-flex justify-content-center align-items-center bg-dark text-white">
+        <form class="w-75" method="post" action="addData">
+        {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" name="title" id="title" autocomplete="off" aria-describedby="emailHelp"
+                    placeholder="Enter title" required>
+            </div>
+            <div class="d-flex justify-content-between">
+            <div class="form-group">
+                <label for="lang">Language</label>
+                <input type="text" name="lang" class="form-control" id="lang" autocomplete="off" placeholder="Enter Language" required>
+            </div>
+            <div class="form-group">
+                <label for="imdb">IMdb</label>
+                <input type="text" name="imdb" class="form-control" id="imdb" autocomplete="off" placeholder="Enter IMdb score" required>
+            </div>
+            <div class="form-group">
+                <label for="release">Release Date</label>
+                <input type="text" name="release" class="form-control" id="release" autocomplete="off" placeholder="Enter release date" required>
+            </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="imgsrc">Poster Link</label>
+                <input type="text" name="imgsrc" class="form-control" id="imgsrc" autocomplete="off" placeholder="Paste telegram link" required>
+            </div>
+
+            <div class="form-group">
+                <label for="link">Telegram Link</label>
+                <input type="text" name="link" class="form-control" id="link" autocomplete="off" placeholder="Paste telegram link">
+            </div>
+
+            <div class="form-group">
+                <label for="olink">OTT Link(optional)</label>
+                <input type="text" name="olink" class="form-control" id="olink" autocomplete="off" placeholder="Paste OTT platform link">
+            </div>
+
+            <div class="form-group">
+                <input type="radio" id="optmovie" name="optradio" value="movie" checked>
+                <label class="radio-inline m-2" for="optmovie">Movie</label>
+                <input type="radio" id="optseries" name="optradio" value="series">
+                <label class="radio-inline m-2" for="optseries">Series</label>
+            </div>
+            <button type="submit" id="btn" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+
+
+{% endblock body %}
+
+{% block script %}
+<script src="/static/movies.js"></script>
+{% endblock script %}

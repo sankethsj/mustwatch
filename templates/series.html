@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}TV Shows{% endblock title %}
+
+{% block body %}
+<body class="bg-dark">
+<h2 class="ml-5 text-white">TV Shows:</h2>
+  <div class="d-flex m-2 flex-wrap justify-content-center align-items-center">
+    {% for serie in series %}
+        <div class="card m-1" style="width: 300px; height:fit-content;">
+          <div class="d-flex flex-column p-2 justify-content-center align-items-center">
+            <img src="{{serie.imgsrc}}" style="width:190px;">
+            <h5 class="card-title p-2">{{serie.title}}</h5>
+            <p class="">Release date : {{serie.release}}<br>
+                        IMdb : <b>{{serie.imdb}}</b>
+                        Language: <b>{{serie.lang}}</b></p>
+            <div class="d-flex">
+            <a href="{{serie.link}}" target="_blank" class="btn btn-primary">Telegram</a>
+            {% if serie.ott %}
+              <a href="{{serie.ott}}" target="_blank" class="btn btn-dark ml-2">OTT</a>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+    </div>
+</body>
+{% endblock body %}
